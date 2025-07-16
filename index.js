@@ -26,29 +26,33 @@ app.get("/create", (req, res) => {
     res.render("create.ejs");
 });
 
-app.post("/submit", createBlog, (req, res) => {
-    // console.log(req.body.titleBlog);
-    // console.log(req.body.contentBlog);
-    res.redirect("/");
+app.get("/about", (req, res) => {
+    res.render("about.ejs");
 });
 
-app.get("/update/:id", (req, res) => {
-    const blogID = req.params.id;
+app.post("/load", (req, res) => {
+    const blogID = req.body.id;
     res.render("update.ejs", { blog: blogs[blogID], id: blogID });
 });
 
-app.post("/update/:id", (req, res) => {
-    const blogID = req.params.id;
+app.post("/update", (req, res) => {
+    const blogID = req.body.id;
     blogs[blogID].title = req.body.titleBlog;
     blogs[blogID].content = req.body.contentBlog;
     res.redirect("/");
 });
 
-app.post("/delete/:id", (req, res) => {
-    const blogID = req.params.id;
+app.post("/delete", (req, res) => {
+    const blogID = req.body.id;
     blogs.splice(blogID, 1);
     res.redirect("/");
-})
+});
+
+app.post("/submit", createBlog, (req, res) => {
+    // console.log(req.body.titleBlog);
+    // console.log(req.body.contentBlog);
+    res.redirect("/");
+});
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);

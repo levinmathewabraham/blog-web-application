@@ -1,45 +1,49 @@
 <%- include("partials/header.ejs") %>
 
-<main class="text-bg-dark text-center p-3">
-    <div class="container p-5">
-        <h1>Welcome to Blog Web Application</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-            when an unknown printer took a galley of type and scrambled it to make a type 
-            specimen book. It has survived not only five centuries, but also the leap into 
-            electronic typesetting, remaining essentially unchanged. It was popularised in 
-            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-            and more recently with desktop publishing software like Aldus PageMaker 
-            including versions of Lorem Ipsum.</p>
-        <a class="btn btn-secondary" href="/create">Write Blog</a>
+<main class="text-bg-dark p-3">
+  <div class="row m-0">
+    <div class="hero-section container col-md-6 p-5">
+      <h1 class="display-5 fw-bold px-5">Welcome to Blog Web Application</h1>
+      <div class="px-5">
+        <p class="lead mb-4">Welcome to the BlogWebApp where you can find valuable tips, inspiration, and updates about writing from your fellow creators and content experts.</p>
+        <a class="btn btn-outline-info btn-lg px-4 gap-3" href="/create">Write Your Blog!</a>
+      </div>
     </div>
-    <div class="blogs-section p-5">
-        <h2>Recent Blogs</h2>
-        <% blogs.forEach(function(blogPost, index) { %>
-            <h3></h3>
-            <p></p>
-        <div class="row row-cols-1 row-cols-md-12 g-4">
+    <div class="col-md-6">
+
+    </div>
+  </div>
+  <div class="row m-0">
+    <div class="blogs-section container p-5">
+      <% if (blogs.length > 0) { %>
+        <h2 class="display-6 fw-bold px-5">Recent Blogs</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 px-5 mt-0">
+          <% blogs.forEach(function(blogPost, index) { %>
             <div class="col">
-              <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
+              <div class="card text-bg-secondary border-info h-100 shadow-lg">
                 <div class="card-body">
-                  <h5 class="card-title"><%= blogPost.title %></h5>
+                  <h5 class="card-title fs-3 fw-bold"><%= blogPost.title %></h5>
                   <p class="card-text"><%= blogPost.content %></p>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <a href="/update/<%= index %>" class="btn btn-secondary">Update</a>
-                    <form action="/delete/<%= index %>" method="POST">
-                        <input type="submit" value="Delete" class="btn btn-secondary mb-3">
-                    </form>
-                </div>
-                <div class="card-footer">
-                  <small class="text-body-secondary">Last updated X mins ago</small>
+                <div class="d-flex gap-2 p-3">
+                  <form action="/load" method="POST">
+                    <input type="hidden" name="id" value="<%= index %>">
+                    <button type="submit" class="btn btn-warning mb-3">Update</button>
+                  </form>
+                  <form action="/delete" method="POST">
+                    <input type="hidden" name="id" value="<%= index %>">
+                    <button type="submit" class="btn btn-danger mb-3">Delete</button>
+                  </form>
                 </div>
               </div>
             </div>
+          <% }); %>
         </div>
-        <% }); %>
+      <% } else { %>
+        <h2 class="display-6 fw-bold px-5">No blogs found. <a href="/create">Can you write one?</a></h2>
+      <% } %>
     </div>
+  </div>
 </main>
 
 <%- include("partials/footer.ejs") %>
