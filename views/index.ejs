@@ -1,0 +1,45 @@
+<%- include("partials/header.ejs") %>
+
+<main class="text-bg-dark text-center p-3">
+    <div class="container p-5">
+        <h1>Welcome to Blog Web Application</h1>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+            when an unknown printer took a galley of type and scrambled it to make a type 
+            specimen book. It has survived not only five centuries, but also the leap into 
+            electronic typesetting, remaining essentially unchanged. It was popularised in 
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+            and more recently with desktop publishing software like Aldus PageMaker 
+            including versions of Lorem Ipsum.</p>
+        <a class="btn btn-secondary" href="/create">Write Blog</a>
+    </div>
+    <div class="blogs-section p-5">
+        <h2>Recent Blogs</h2>
+        <% blogs.forEach(function(blogPost, index) { %>
+            <h3></h3>
+            <p></p>
+        <div class="row row-cols-1 row-cols-md-12 g-4">
+            <div class="col">
+              <div class="card h-100">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= blogPost.title %></h5>
+                  <p class="card-text"><%= blogPost.content %></p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="/update/<%= index %>" class="btn btn-secondary">Update</a>
+                    <form action="/delete/<%= index %>" method="POST">
+                        <input type="submit" value="Delete" class="btn btn-secondary mb-3">
+                    </form>
+                </div>
+                <div class="card-footer">
+                  <small class="text-body-secondary">Last updated X mins ago</small>
+                </div>
+              </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</main>
+
+<%- include("partials/footer.ejs") %>
