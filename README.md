@@ -3,10 +3,10 @@ A simple and functional blog application built with **Node.js**, **Express.js**,
 
 ## 💡 Features
 
-- 📝 Create blog posts
-- 📋 View all posts on the home page
-- ✏️ Update existing posts
-- ❌ Delete unwanted posts
+- Create blog posts
+- View all posts on the home page
+- Update existing posts
+- Delete unwanted posts
 
 ## 🛠 Tech Stack
 
