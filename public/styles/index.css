@@ -23,8 +23,13 @@ main {
     border-radius: 0px;
 }
 
+.card {
+    border-radius: 0px;
+}
+
 .form-control {
     background-color: #adb5bd;
     color: #fff;
     border: #0dcaf0 solid;
+    border-radius: 0px;
 }
