@@ -19,6 +19,16 @@ main {
     background-color: #0dcaf0 !important;
 }
 
+.navbar-toggler {
+    border: #0dcaf0 solid;
+    border-radius: 0px;
+}
+
+.navbar-toggler:hover {
+    background-color: #0dcaf0;
+    border: #fff solid;
+}
+
 .btn {
     border-radius: 0px;
 }
