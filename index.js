@@ -29,14 +29,14 @@ app.get("/about", (req, res) => {
 });
 
 //Available blogs to update/delete
-app.get("/view", (req, res) => {
-    res.render("view.ejs", { blogs });
+app.get("/manage", (req, res) => {
+    res.render("manage.ejs", { blogs });
 });
 
 //View specific blogs
 app.post("/blog", (req, res) => {
     const blogID = req.body.id;
-    res.render("blogs.ejs", { blog: blogs[blogID] });
+    res.render("blog.ejs", { blog: blogs[blogID] });
 });
 
 //Create new blog
