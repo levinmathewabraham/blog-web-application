@@ -32,9 +32,7 @@ blog-web-application/
 │ ├── index.ejs
 │ ├── manage.ejs
 │ └── update.ejs
-│
 ├── index.js
-│
 ├── package-lock.json
 ├── package.json
 └── README.md
