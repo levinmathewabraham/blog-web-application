@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs") %>
+
+<main class="text-bg-dark">
+  <div class="row pt-5 m-0">
+    <div class="blogs-section container pt-5 pb-5">
+            <div class="h-100 shadow-lg">
+                <h5 class="fs-3 fw-bold"><%= blog.title %></h5>
+                <p class="card-text"><%= blog.content %></p>
+            </div>
+        </div>
+    </div>
+  </div>
+</main>
+
+<%- include("partials/footer.ejs") %>

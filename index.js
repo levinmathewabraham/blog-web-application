@@ -18,23 +18,39 @@ function createBlog(req, res, next) {
     next();
 }
 
+//Redirect to home page
 app.get("/", (req, res) => {
     res.render("index.ejs", { blogs: blogs });
 });
 
-app.get("/create", (req, res) => {
-    res.render("create.ejs");
-});
-
+//Redirect to about page
 app.get("/about", (req, res) => {
     res.render("about.ejs");
 });
 
+//Available blogs to update/delete
+app.get("/view", (req, res) => {
+    res.render("view.ejs", { blogs });
+});
+
+//View specific blogs
+app.post("/blog", (req, res) => {
+    const blogID = req.body.id;
+    res.render("blogs.ejs", { blog: blogs[blogID] });
+});
+
+//Create new blog
+app.get("/create", (req, res) => {
+    res.render("create.ejs");
+});
+
+//Retrieve specific blog data for updation
 app.post("/load", (req, res) => {
     const blogID = req.body.id;
     res.render("update.ejs", { blog: blogs[blogID], id: blogID });
 });
 
+//Handles blog updates
 app.post("/update", (req, res) => {
     const blogID = req.body.id;
     blogs[blogID].title = req.body.titleBlog;
@@ -42,15 +58,15 @@ app.post("/update", (req, res) => {
     res.redirect("/");
 });
 
+//Delete blogs
 app.post("/delete", (req, res) => {
     const blogID = req.body.id;
     blogs.splice(blogID, 1);
     res.redirect("/");
 });
 
+//Handles blog creation and redirects back to home page
 app.post("/submit", createBlog, (req, res) => {
-    // console.log(req.body.titleBlog);
-    // console.log(req.body.contentBlog);
     res.redirect("/");
 });
 
