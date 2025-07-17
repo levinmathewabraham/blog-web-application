@@ -1,21 +1,25 @@
 <%- include("partials/header.ejs") %>
 
 <main class="text-bg-dark p-3">
-    <div class="container p-5">
-      <h1 class="display-5 fw-bold text-center">Create New Blog</h1>
-        <form action="/submit" method="POST">
-            <div class="mb-3">
-                <label for="titleBlog" class="form-label fs-4 fw-bold">Blog Title</label>
-                <input type="text" class="form-control" name="titleBlog" placeholder="Title for your blog...">
+    <div class="row pt-5 m-0">
+        <div class="create-blog container pt-5 pb-5 px-5">
+            <div class="shadow-lg p-5">
+                <h1 class="display-5 fw-bold text-center">Create New Blog</h1>
+                <form action="/submit" method="POST">
+                    <div class="mb-3">
+                        <label for="titleBlog" class="form-label fs-4 fw-bold">Blog Title</label>
+                        <input type="text" class="form-control" name="titleBlog" placeholder="Title for your blog...">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contentBlog" class="form-label fs-4 fw-bold">Blog Content</label>
+                        <textarea class="form-control" name="contentBlog" rows="5" placeholder="Write your content here..."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-lg btn-info mb-3 fw-bold">Publish</button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="contentBlog" class="form-label fs-4 fw-bold">Blog Content</label>
-                <textarea class="form-control" name="contentBlog" rows="5" placeholder="Write your content here..."></textarea>
-            </div>
-            <div class="mb-3">
-              <button type="submit" class="btn btn-lg btn-info mb-3 fw-bold">Publish</button>
-            </div>
-        </form>
+        </div>
     </div>
 </main>
 

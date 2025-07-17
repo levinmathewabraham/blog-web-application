@@ -1,38 +1,40 @@
 <%- include("partials/header.ejs") %>
 
-<main class="text-bg-dark">
-  <div class="row pt-5 m-0">
-    <div class="hero-section container col-md-6 pt-5">
-      <h1 class="display-5 fw-bold px-5">Welcome to StackBlogs</h1>
-      <div class="px-5">
-        <p class="lead mb-4">Write valuable and inspiring articles! This web appliation was created using Node.js, Express.js, and EJS (Embedded JavaScript Templates). </p>
-        <a class="btn btn-info btn-lg px-4 gap-3" href="/create">Write Your Blog!</a>
-        <a class="btn btn-outline-info btn-lg px-4 gap-3" href="https://github.com/levinmathewabraham/blog-web-application">View Code</a>
+<main class="text-bg-dark py-5 mt-5">
+  <div class="row align-items-center py-5 g-3 m-0">
+    <div class="hero-section container col-md-6 px-5">
+      <h1 class="display-4 fw-bold">Welcome to Blog Web Application</h1>
+      <p class="lead mb-4">Write it. Read it. Forget it exists tomorrow.</p>
+      <div class="d-flex gap-2">
+        <a class="btn btn-info btn-lg px-3 gap-3" href="/create">Start writing!</a>
+        <a class="btn btn-outline-info btn-lg px-3 gap-3" href="https://github.com/levinmathewabraham/blog-web-application">View Code</a>
       </div>
     </div>
-    <div class="col-md-6">
-
+    <div class="col-md-6 px-5">
+      <img src="images/Blog.jpg" class="img-fluid shadow-lg" alt="">
     </div>
   </div>
   <div class="row pt-5 m-0">
     <div class="blogs-section container pt-5 pb-5">
       <% if (blogs.length > 0) { %>
-        <h2 class="display-6 fw-bold px-5">Recent Blogs</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4 px-5 mt-0">
-          <% blogs.forEach(function(blogPost, index) { %>
-            <div class="col">
-              <div class="card text-bg-secondary border-info h-100 shadow-lg">
-                <div class="card-body">
-                  <h5 class="card-title fs-3 fw-bold"><%= blogPost.title %></h5>
-                  <p class="card-text"><%= blogPost.content.slice(0, 200) %>...</p>
-                  <form action="/blog" method="POST">
-                    <input type="hidden" name="id" value="<%= index %>">
-                    <button type="submit" class="btn btn-sm btn-info mb-3">Read More</button>
-                  </form>
+        <div class="shadow-lg pt-5 pb-5">
+          <h2 class="display-5 fw-bold px-5">Recent Blogs</h2>
+          <div class="row row-cols-1 row-cols-md-3 g-4 px-5 mt-0">
+            <% blogs.forEach(function(blogPost, index) { %>
+              <div class="col">
+                <div class="card text-bg-secondary border-info h-100 shadow-lg">
+                  <div class="card-body">
+                    <h5 class="card-title fs-3 fw-bold"><%= blogPost.title %></h5>
+                    <p class="card-text"><%= blogPost.content.slice(0, 200) %>...</p>
+                    <form action="/blog" method="POST">
+                      <input type="hidden" name="id" value="<%= index %>">
+                      <button type="submit" class="btn btn-sm btn-info mb-3">Read More</button>
+                    </form>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% }); %>
+            <% }); %>
+          </div>
         </div>
       <% } else { %>
         <h2 class="display-6 fw-bold px-5">No blogs found. <a href="/create">Can you write one?</a></h2>

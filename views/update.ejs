@@ -1,21 +1,25 @@
 <%- include("partials/header.ejs") %>
 
 <main class="text-bg-dark p-3">
-    <div class="container p-5">
-        <form action="/update" method="POST">
-            <input type="hidden" name="id" value="<%= id %>">
-            <div class="mb-3">
-                <label for="titleBlog" class="form-label">Blog Title</label>
-                <input type="text" class="form-control" name="titleBlog" value="<%= blog.title %>">
+    <div class="row pt-5 m-0">
+        <div class="update-blog container pt-5 pb-5">
+            <div class="shadow-lg p-5">
+                <form action="/update" method="POST">
+                    <input type="hidden" name="id" value="<%= id %>">
+                    <div class="mb-3">
+                        <label for="titleBlog" class="form-label fs-4 fw-bold">Blog Title</label>
+                        <input type="text" class="form-control" name="titleBlog" value="<%= blog.title %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contentBlog" class="form-label fs-4 fw-bold">Blog Content</label>
+                        <textarea class="form-control" name="contentBlog" rows="5"><%= blog.content %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-lg btn-warning fw-bold mb-3">Update</button>
+                    </div>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="contentBlog" class="form-label">Blog Content</label>
-                <textarea class="form-control" name="contentBlog" rows="5"><%= blog.content %></textarea>
-            </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-lg btn-warning fw-bold mb-3">Update</button>
-            </div>
-        </form>
+        </div>
     </div>
 </main>
 
