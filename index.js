@@ -57,7 +57,15 @@ app.get("/create", (req, res) => {
 //Retrieve specific blog data for updation
 app.post("/load", (req, res) => {
     const blogID = req.body.id;
-    res.render("update.ejs", { blog: blogs[blogID], id: blogID });
+    // Replace <br> (or <br />) with newline characters for textarea
+    let contentForTextarea = blogs[blogID].content.replace(/<br\s*\/?>/gi, '\n');
+    res.render("update.ejs", {
+        blog: {
+            title: blogs[blogID].title,
+            content: contentForTextarea,
+        },
+        id: blogID
+    });
 });
 
 //Handles blog updates
