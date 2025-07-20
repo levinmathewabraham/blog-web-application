@@ -1,5 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
+import sanitizeHtml from "sanitize-html";
 
 const app = express();
 const port = 3000;
@@ -8,9 +9,18 @@ let blogs = [];
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+function sanitizeContent(content) {
+    // Replace newlines with <br> and sanitize the HTML
+    const withBreaks = content.replace(/\r?\n/g, "<br>");
+    return sanitizeHtml(withBreaks, {
+        allowedTags: ['br'],
+        allowedAttributes: {}
+    });
+}
+
 function createBlog(req, res, next) {
-    const blogTitle = req.body.titleBlog;
-    const blogContent = req.body.contentBlog;
+    const blogTitle = sanitizeContent(req.body.titleBlog);
+    const blogContent = sanitizeContent(req.body.contentBlog);
     blogs.push( {
         title: blogTitle,
         content: blogContent,
@@ -53,8 +63,8 @@ app.post("/load", (req, res) => {
 //Handles blog updates
 app.post("/update", (req, res) => {
     const blogID = req.body.id;
-    blogs[blogID].title = req.body.titleBlog;
-    blogs[blogID].content = req.body.contentBlog;
+    blogs[blogID].title = sanitizeContent(req.body.titleBlog);
+    blogs[blogID].content = sanitizeContent(req.body.contentBlog);
     res.redirect("/");
 });
 
